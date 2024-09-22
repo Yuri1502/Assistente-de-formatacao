@@ -2,7 +2,7 @@
 #versão alpha
 #Objetivo: Já pensou em ter um programa que te auxilia a instalar programas da internet de forma mais rápida e facil do que ir em varios sites diferentes para baixar os aplixativos?
 #Este projeto tenta resolver este problema alem de ser um jeito de me desenvolver em python :)
-Versao ="v0.1.0"
+Versao ="v0.2.0"
 
 #Aqui eu importo as bibliotecas que vou usar no projeto
 import os
@@ -168,6 +168,56 @@ def instalador():
     else:
         ErroMenu()
 
+#Ferramenta de desfragmentar a unidade dew disco C:
+def desfragmentar():
+    os.system(command="cls")
+    if Darkmode == 1:
+        os.system(command="color 0A")
+    else:
+        os.system(command="color 7A")
+    print(Linha1)
+    print(Linha2)
+    print()
+    print("Desfragmentar unidade C:")
+    print("O que deseja fazer?")
+    print("1 - Analizar")
+    print("2 - Desfragmentar o Boot")
+    print("3 - Desfragmentar Normal")
+    print("4 - Desfragmentar Avançado")
+    print("5 - Abrir defrag")
+    print("0 - Voltar")
+    print()
+    print("Escolha um número referente a opção e aperte ENTER: ")
+    print()
+
+    #Escolhendo a opção
+    OpcaoDesfrag = input("")
+
+    #Depois de definir a opção ira iniciar a desfragmentaçãop conforme escolhido a opção
+    if OpcaoDesfrag == "0":
+        Menu()
+    elif OpcaoDesfrag == "1":
+        print("Você escolheu Analizar a unidade C")
+        os.system(command="defrag c: /a")
+        desfragmentar()
+    elif OpcaoDesfrag == "2":
+        print("Você escolheu Desfragmentar o Boot da unidade C")
+        os.system(command="defrag c: /b")
+        desfragmentar()
+    elif OpcaoDesfrag == "3":
+        print("Você escolheu Desfragmentar Normal a unidade C")
+        os.system(command="defrag c: /d /u")
+        desfragmentar()
+    elif OpcaoDesfrag == "4":
+        print("Você escolheu Desfragmentar Avançado a unidade C")
+        os.system(command="defrag c: /h /u")
+        desfragmentar()
+    elif OpcaoDesfrag == "5":
+        print("Você escolheu Abrir defrag da unidade C")
+        os.system(command="start dfrgui.exe")
+        desfragmentar()
+    else:
+        ErroMenu()
 
 
 #Definindo o que é o menu
@@ -183,8 +233,9 @@ def Menu():
     print("Menu")
     print("O que deseja fazer?")
     print("1 - Instalar um programa")
+    print("2 - Atualizar os programas instalados")
+    print("3 - Desfragmentar")
     print("0 - Sair")
-    print("Mais opções em breve")
     print()
     print("Escolha um número referente a opção e aperte ENTER:")
     OpcaoMenu = input("")
@@ -193,6 +244,10 @@ def Menu():
         os.system(command="exit")
     elif OpcaoMenu == "1":
         instalador()
+    elif OpcaoMenu == "2":
+        os.system(command="winget upgrade --all")
+    elif OpcaoMenu == "3":
+        desfragmentar()
     else:
         ErroMenu()
 
